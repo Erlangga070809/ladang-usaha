@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Masuk ke Ladang Usaha - Platform manajemen usaha Anda">
+  <title>Masuk - Ladang Usaha</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background: var(--background);">
+  <div style="width: 100%; max-width: 420px; padding: 24px;">
+    <div style="text-align: center; margin-bottom: 32px;">
+      <a href="/" style="display: inline-flex; align-items: center; gap: 10px;">
+        <img src="/assets/logo.png" alt="Ladang Usaha" width="40" height="40" style="border-radius: var(--radius);">
+        <span style="font-size: 1.25rem; font-weight: 700; color: var(--text);">Ladang Usaha</span>
+      </a>
+    </div>
+
+    <div class="card">
+      <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; text-align: center;">Masuk</h1>
+      <p style="color: var(--muted); font-size: 0.875rem; text-align: center; margin-bottom: 24px;">Masuk ke akun Ladang Usaha Anda</p>
+
+      <div id="error-message" class="hidden" style="background: var(--danger-bg); color: var(--danger); padding: 12px; border-radius: var(--radius); margin-bottom: 20px; font-size: 0.875rem;"></div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email" class="label">Email</label>
+          <input type="email" id="email" class="input" placeholder="nama@email.com" required autocomplete="email" autofocus>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="label">Password</label>
+          <div style="position: relative;">
+            <input type="password" id="password" class="input" placeholder="Masukkan password" required autocomplete="current-password" style="padding-right: 44px;">
+            <button type="button" id="toggle-password" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; color: var(--muted); padding: 4px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn btn-primary w-full" style="margin-top: 8px;">
+          Masuk
+        </button>
+      </form>
+
+      <p style="text-align: center; margin-top: 20px; font-size: 0.875rem; color: var(--muted);">
+        Belum punya akun? <a href="/register.html" style="color: var(--primary); font-weight: 500;">Daftar</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>
