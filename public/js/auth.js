@@ -66,6 +66,7 @@ function setupLoginForm() {
       localStorage.setItem('token', result.token);
       App.token = result.token;
       App.user = result.user;
+      App.business = result.business;
 
       if (result.user.role === 'OWNER') {
         window.location.href = '/dashboard.html';
@@ -150,6 +151,7 @@ function setupRegisterForm() {
       localStorage.setItem('token', result.token);
       App.token = result.token;
       App.user = result.user;
+      App.business = result.business;
 
       window.location.href = '/dashboard.html';
     } catch (err) {
@@ -164,4 +166,4 @@ function setupRegisterForm() {
     errorMsg.textContent = message;
     errorMsg.classList.remove('hidden');
   }
-}
+        }
