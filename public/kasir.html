@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="POS Kasir Ladang Usaha - Transaksi cepat dan mudah">
+  <title>POS Kasir - Ladang Usaha</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="/assets/logo.png" alt="Ladang Usaha" class="sidebar-logo">
+        <span class="sidebar-brand">Ladang Usaha</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <a href="/kasir.html" class="nav-item active">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            POS
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Aktivitas</div>
+          <a href="/transaksi.html" class="nav-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Transaksi Saya
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Akun</div>
+          <button onclick="App.logout(); window.location.href='/login.html'" class="nav-item" style="width: 100%; text-align: left;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Keluar
+          </button>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar" id="user-initials"></div>
+          <div class="user-details">
+            <div class="user-name" id="user-name"></div>
+            <div class="user-role">Kasir</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <button class="menu-toggle" aria-label="Toggle menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div>
+            <h1 class="page-title">Point of Sale</h1>
+            <p class="page-subtitle">Kasir: <span id="cashier-name"></span></p>
+          </div>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <div class="pos-layout">
+          <div class="pos-products">
+            <div style="margin-bottom: 20px;">
+              <div class="search-bar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="pos-search" class="input" placeholder="Cari produk..." style="padding-left: 40px;">
+              </div>
+            </div>
+
+            <div class="pos-categories" id="pos-categories"></div>
+
+            <div class="pos-product-grid" id="pos-product-grid">
+              <div class="skeleton skeleton-card"></div>
+              <div class="skeleton skeleton-card"></div>
+              <div class="skeleton skeleton-card"></div>
+              <div class="skeleton skeleton-card"></div>
+              <div class="skeleton skeleton-card"></div>
+              <div class="skeleton skeleton-card"></div>
+            </div>
+          </div>
+
+          <div class="pos-cart" id="pos-cart">
+            <div class="pos-cart-header">
+              <h2 class="pos-cart-title">Keranjang</h2>
+            </div>
+
+            <div class="pos-cart-items" id="cart-items">
+              <div class="empty-state">
+                <div style="font-size: 2rem; margin-bottom: 8px;">🛒</div>
+                <div class="empty-state-title">Keranjang kosong</div>
+                <div class="empty-state-description">Klik produk untuk menambahkan</div>
+              </div>
+            </div>
+
+            <div class="pos-cart-footer">
+              <div class="payment-methods">
+                <button class="payment-method active" data-method="CASH">Cash</button>
+                <button class="payment-method" data-method="QRIS">QRIS</button>
+                <button class="payment-method" data-method="TRANSFER">Transfer</button>
+              </div>
+
+              <div id="paid-section">
+                <div class="form-group">
+                  <label for="paid-amount" class="label">Jumlah Dibayar</label>
+                  <input type="number" id="paid-amount" class="input" placeholder="0" min="0">
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                  <span style="font-size: 0.875rem; color: var(--muted);">Kembalian</span>
+                  <span style="font-weight: 600; font-size: 1rem; color: var(--success);" id="change-amount">Rp0</span>
+                </div>
+              </div>
+
+              <div class="pos-cart-total">
+                <span class="pos-cart-total-label">Total</span>
+                <span class="pos-cart-total-value" id="cart-total">Rp0</span>
+              </div>
+
+              <button id="checkout-btn" class="btn btn-primary w-full btn-lg" onclick="processCheckout()" disabled>
+                Bayar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button id="cart-toggle" class="btn btn-primary" style="position: fixed; bottom: 24px; right: 24px; display: none; z-index: 150; box-shadow: var(--shadow-lg);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Keranjang
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/kasir.js"></script>
+</body>
+</html>
